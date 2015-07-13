@@ -229,7 +229,7 @@ EOF
     env|grep -e ^debug_ -e ^pre_ -e ^want_ -e ^net_ -e ^nodenumber -e ^clusterconfig | sort >> $mkcconf
 
     $scp $qa_crowbarsetup $mkcconf root@$adminip:
-    ssh $sshopts root@$adminip "echo `hostname` > cloud ; . qa_crowbarsetup.sh ; $@"
+    ssh $sshopts root@$adminip "echo `hostname` > cloud ; echo EDITOR=edit > ~/.profile ; . qa_crowbarsetup.sh ; $@"
     return $?
 }
 
