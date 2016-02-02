@@ -13,6 +13,7 @@ for my $num ($startnum..$endnum) {
     my $build = "$jobname/$num";
     $_ = `curl -s https://ci.suse.de/job/$build/consoleText`;
     last if m/<body><h2>HTTP ERROR 404/;
+    if(m/crowbar\.(v[a-z]\d|[cgh]\d)/) { print "$1 "}
     next unless m/Finished: FAILURE/;
     system("echo \$((1+$num)) > $numfile");
     my $descr = "";
