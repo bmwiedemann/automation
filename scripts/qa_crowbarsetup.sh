@@ -3786,6 +3786,7 @@ function onadmin_addupdaterepo()
     local UPR=$tftpboot_repos_dir/Cloud-PTF
     iscloudver 6plus && UPR=$tftpboot_repos12sp1_dir/PTF
 
+    zypper -n up zypper
     mkdir -p $UPR
 
     if [[ -n "$UPDATEREPOS" ]]; then
