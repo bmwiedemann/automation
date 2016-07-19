@@ -5,6 +5,7 @@ use strict;
 
 # This tool updates jenkins build descriptions with extracts from result logs
 
+my $force=$ENV{FORCE}||0 eq "1" ?1:0;
 my $jobname=$ENV{jobname}||"openstack-mkcloud";
 my $numfile="$jobname.buildnum";
 my $startnum=`cat $numfile`-10;
@@ -15,6 +16,11 @@ for my $num ($startnum..$endnum) {
     last if m/<body><h2>HTTP ERROR 404/;
     next unless m/Finished: FAILURE/;
     system("echo \$((1+$num)) > $numfile");
+    my $description=`./japi getdescription $build`;
+    if($description and not $force) {
+        print "skipping $build because it already has a description\n";
+        next;
+    }
     my $descr = "";
     foreach my $regexp (
         '(java.lang.OutOfMemoryError)',
