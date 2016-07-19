@@ -8,8 +8,8 @@ use strict;
 my $force=$ENV{FORCE}||0 eq "1" ?1:0;
 my $jobname=$ENV{jobname}||"openstack-mkcloud";
 my $numfile="$jobname.buildnum";
-my $startnum=`cat $numfile`-10;
-my $endnum=$startnum+30;
+my $startnum=`cat $numfile`-30;
+my $endnum=$startnum+70;
 for my $num ($startnum..$endnum) {
     my $build = "$jobname/$num";
     $_ = `curl -s https://ci.suse.de/job/$build/consoleText`;
