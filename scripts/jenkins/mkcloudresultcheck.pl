@@ -13,7 +13,6 @@ for my $num ($startnum..$endnum) {
     my $build = "$jobname/$num";
     $_ = `curl -s https://ci.suse.de/job/$build/consoleText`;
     last if m/<body><h2>HTTP ERROR 404/;
-    if(m/crowbar\.(v[a-z]\d|[cgh]\d)/) { print "$1 "}
     next unless m/Finished: FAILURE/;
     system("echo \$((1+$num)) > $numfile");
     my $descr = "";
@@ -47,6 +46,7 @@ for my $num ($startnum..$endnum) {
     if(m{^github_pr=([a-z-]+/[a-z-]+):(\d+)}mi) {
         $descr.=" https://github.com/$1/pull/$2 "
     }
+    if(m{crowbar\.(v[a-z]\d|[cgh]\d)\.cloud\.suse\.de}) { $descr="$1 $descr" }
     print "$build $descr\n";
     system("./japi", "setdescription", $build, $descr);
 }
