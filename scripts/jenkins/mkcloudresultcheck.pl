@@ -33,6 +33,7 @@ for my $num ($startnum..$endnum) {
         'crowbar\.(\w\d+)\.cloud\.suse\.de',
         'Error: (crowbar self-test) failed',
 	'Error: Waiting for \'(all nodes to be discovered)\' timed out.',
+	'Error: Waiting for \'(admin node to start ssh) daemon\' timed out.',
 	'(Automatic merge failed)',
 	'(binding_failed): 1',
         'mk(?:phys)?cloud (ret=\d+)',
