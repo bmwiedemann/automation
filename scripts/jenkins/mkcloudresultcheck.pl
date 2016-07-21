@@ -31,6 +31,7 @@ for my $num ($startnum..$endnum) {
         '(SHA1 mismatch), newer commit exists',
         'crowbar\.(\w\d+)\.cloud\.suse\.de',
         'Error: (crowbar self-test) failed',
+	'Error: Waiting for \'(all nodes to be discovered)\' timed out.',
 	'(Automatic merge failed)',
 	'(binding_failed): 1',
         'mk(?:phys)?cloud (ret=\d+)',
