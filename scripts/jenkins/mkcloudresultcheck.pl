@@ -34,6 +34,8 @@ for my $num ($startnum..$endnum) {
         'Error: (crowbar self-test) failed',
 	'Error: Waiting for \'(all nodes to be discovered)\' timed out.',
 	'Error: Waiting for \'(admin node to start ssh) daemon\' timed out.',
+	'\nError: Waiting for \'([^\n\']+)\' timed out.',
+	'\nError: (.+) failed',
 	'(Automatic merge failed)',
 	'(binding_failed): 1',
         'mk(?:phys)?cloud (ret=\d+)',
