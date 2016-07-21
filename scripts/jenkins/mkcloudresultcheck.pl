@@ -10,6 +10,7 @@ my $jobname=$ENV{jobname}||"openstack-mkcloud";
 my $numfile="$jobname.buildnum";
 my $startnum=`cat $numfile`-30;
 my $endnum=$startnum+70;
+if($ENV{TEST}) { $force=1; $startnum=$endnum=$ENV{TEST} }
 for my $num ($startnum..$endnum) {
     my $build = "$jobname/$num";
     $_ = `curl -s https://ci.suse.de/job/$build/consoleText`;
