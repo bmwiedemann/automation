@@ -36,6 +36,7 @@ for my $num ($startnum..$endnum) {
 	'Error: Waiting for \'(admin node to start ssh) daemon\' timed out.',
 	'\nError: Waiting for \'([^\n\']+)\' timed out.',
 	'\nError: (.+) failed',
+	'\nError: (.+) failure',
 	'(Automatic merge failed)',
 	'(binding_failed): 1',
         'mk(?:phys)?cloud (ret=\d+)',
