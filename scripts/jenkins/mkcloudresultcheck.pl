@@ -8,7 +8,8 @@ use strict;
 my $force=$ENV{FORCE}||0 eq "1" ?1:0;
 my $jobname=$ENV{jobname}||"openstack-mkcloud";
 my $numfile="$jobname.buildnum";
-my $startnum=`cat $numfile`-30;
+my $numfilevalue=`cat $numfile`;
+my $startnum=$numfilevalue-30;
 my $endnum=$startnum+70;
 if($ENV{TEST}) { $force=1; $startnum=$endnum=$ENV{TEST} }
 for my $num ($startnum..$endnum) {
@@ -16,7 +17,7 @@ for my $num ($startnum..$endnum) {
     $_ = `curl -s https://ci.suse.de/job/$build/consoleText`;
     last if m/<body><h2>HTTP ERROR 404/;
     next unless m/Finished: FAILURE/;
-    system("echo \$((1+$num)) > $numfile");
+    system("echo \$((1+$num)) > $numfile") if $num>=$numfilevalue;
     my $description=`./japi getdescription $build`;
     if($description and not $force) {
         print "skipping $build because it already has a description\n";
