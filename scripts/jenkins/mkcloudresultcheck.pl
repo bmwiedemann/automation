@@ -29,6 +29,7 @@ for my $num ($startnum..$endnum) {
         '(Slave went offline) during the build',
         '(Crowbar inst)allation terminated prematurely.  Please examine the above',
         'Build (timed out) \(after \d+ minutes\). Marking the build as failed.',
+        '(mount.nfs: Connection timed out)',
         'Latest (SHA1 from PR does not match) this SHA1',
         '(SHA1 mismatch), newer commit exists',
         'crowbar\.(\w\d+)\.cloud\.suse\.de',
