@@ -45,6 +45,7 @@ for my $num ($startnum..$endnum) {
         '\((safelyret=\d+)\) Aborting',
     ) {
         if(m/$regexp/) {$descr.="$1 "}
+        $descr=~s/TIMEFORMAT="[^"]+" ; time //;
     }
     /^storage_method WARNING/m and $descr.="Not using parameter storage_method. ";
     /\+ '\[' (\d+) = 0 '\]'\n\+ exit 1\nBuild step/ and $1 and $descr.="ret=$1";
