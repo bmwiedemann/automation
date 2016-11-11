@@ -23,6 +23,7 @@ qemu-img convert SLES12-SP2.qcow2 /dev/gate/gatevm
 
 virsh define gatevm.xml
 virsh start gatevm
+virsh autostart gatevm
 
 ssh gatevm mkdir -p ~/.ssh/
 scp ~/.ssh/authorized_keys gatevm:.ssh/
