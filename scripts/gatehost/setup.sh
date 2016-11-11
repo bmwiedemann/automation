@@ -10,4 +10,6 @@ wget http://clouddata.cloud.suse.de/images/x86_64/SLES12-SP2.qcow2
 lvcreate -L 10G -n gatevm gate
 qemu-img convert SLES12-SP2.qcow2 /dev/gate/gatevm
 
+virsh define gatevm.xml
+virsh start gatevm
 
