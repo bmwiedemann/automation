@@ -24,3 +24,10 @@ qemu-img convert SLES12-SP2.qcow2 /dev/gate/gatevm
 virsh define gatevm.xml
 virsh start gatevm
 
+ssh gatevm mkdir -p ~/.ssh/
+scp ~/.ssh/authorized_keys gatevm:.ssh/
+scp -r /etc/zypp/repos.d gatevm:/etc/zypp/
+ssh gatevm zypper -n in rsync
+rsync -a ~/automation gatevm:
+ssh gatevm "cd ~/automation/scripts/gatevm && ./setup.sh"
+
