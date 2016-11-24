@@ -43,6 +43,7 @@ for my $num ($startnum..$endnum) {
 	'(binding_failed): 1',
         'mk(?:phys)?cloud (ret=\d+)',
         '\((safelyret=\d+)\) Aborting',
+        'time onadmin_(.*) failed! \(safelyret=\d+\) Aborting\.',
     ) {
         if(m/$regexp/) {$descr.="$1 "}
         $descr=~s/TIMEFORMAT="[^"]+" ; time //;
