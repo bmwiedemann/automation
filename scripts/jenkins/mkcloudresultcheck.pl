@@ -48,12 +48,15 @@ for my $num (@buildlist) {
     /\+ '\[' (\d+) = 0 '\]'\n\+ exit 1\nBuild step/ and $1 and $descr.="ret=$1";
     if(/The step '(\w+)' returned with exit code (\d+)/) {
         $descr.="/$2/$1";
-        if($2 eq "102") {
+        if(m/Error: Committing the crowbar '\w+' proposal for '(\w+)' failed/) {$descr.="/$1"}
+    }
+    if(/Tests on controller: (\d+)/) {
+        $descr.="/controller=$1";
+        if($1 == 102) {
             if(m/RadosGW Tests: [^0]/) {$descr.="/radosgw"}
             if(m/Volume in VM: (\d+) & (\d+)/ and ($1||$2)) {$descr.="/volume=$1&$2"}
             $descr.=tempestdetails() if(m/Tempest: [^0]/);
         }
-        if(m/Error: Committing the crowbar '\w+' proposal for '(\w+)' failed/) {$descr.="/$1"}
     }
     $descr ||= "unknown cause";
     if(m{^github_pr=([a-z-]+/[a-z-]+):(\d+)}mi) {
