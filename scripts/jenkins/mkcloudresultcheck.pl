@@ -37,6 +37,7 @@ for my $num (@buildlist) {
 	'\nError: (.+) failed',
 	'\nError: (.+) failure',
 	'(Automatic merge failed)',
+	'Job for (couchdb.service failed). See "systemctl status couchdb.service"', # bsc#1025403
 	'(binding_failed): 1',
         'mk(?:phys)?cloud (ret=\d+)',
         '\((safelyret=\d+)\) Aborting',
