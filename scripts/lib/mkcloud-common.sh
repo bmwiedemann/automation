@@ -429,6 +429,7 @@ function get_admin_node_dist
         5)  dist=SLE11    ;;
         *)  dist=SLE11    ;;
     esac
+    [[ $cloudsource = opensusecloud7 ]] && dist=openSUSE422
     echo "$dist"
 }
 
@@ -448,6 +449,7 @@ function dist_to_image_name
         SLE12SP1) image=SLES12-SP1 ;;
         SLE12)    image=SLES12     ;;
         SLE11)    image=SP3-64up   ;;
+        openSUSE422) image=openSUSE-Leap-42.2 ;;
         *)
             complain 71 "No admin node image defined for this distribution: $dist"
         ;;
