@@ -1388,6 +1388,7 @@ EOF
     zypper al kernel-default
     zypper -n dup --no-recommends -r Cloud -r cloudtup || zypper -n dup --no-recommends -r Cloud
     zypper rl kernel-default
+    is_opensuse && zypper -n in -f sles-release -openSUSE-release -patterns-openSUSE-base
 
     # Workaround chef-solr crashes
     if [ "$arch" = "aarch64" ]; then
