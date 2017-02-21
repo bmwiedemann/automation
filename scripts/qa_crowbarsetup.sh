@@ -1388,7 +1388,7 @@ EOF
     zypper al kernel-default
     zypper -n dup --no-recommends -r Cloud -r cloudtup || zypper -n dup --no-recommends -r Cloud
     zypper rl kernel-default
-    is_opensuse && zypper -n in -f sles-release -openSUSE-release -patterns-openSUSE-base
+    is_opensuse && zypper -n in -f sles-release -openSUSE-release -patterns-openSUSE-base && ln -s SLES.prod /etc/products.d/baseproduct && zypper mr -p 98 Cloud #zypper al ruby2.1-rubygem-treetop-1_4 # and manual zypper dup --from sles12sp2up --from sles12sp2 --no-recommends
 
     # Workaround chef-solr crashes
     if [ "$arch" = "aarch64" ]; then
@@ -4436,7 +4436,7 @@ function onadmin_addupdaterepo
 function zypper_patch
 {
     wait_for 30 3 ' zypper --non-interactive --gpg-auto-import-keys --no-gpg-checks ref ; [[ $? != 4 ]] ' "successful zypper run" "exit 9"
-    wait_for 30 3 ' zypper --non-interactive patch ; ret=$?; if [ $ret == 103 ]; then zypper --non-interactive patch ; ret=$?; fi; [[ $ret != 4 ]] ' "successful zypper run" "exit 9"
+    #wait_for 30 3 ' zypper --non-interactive patch ; ret=$?; if [ $ret == 103 ]; then zypper --non-interactive patch ; ret=$?; fi; [[ $ret != 4 ]] ' "successful zypper run" "exit 9"
     wait_for 30 3 ' zypper --non-interactive up --repo cloud-ptf ; [[ $? != 4 ]] ' "successful zypper run" "exit 9"
 }
 
