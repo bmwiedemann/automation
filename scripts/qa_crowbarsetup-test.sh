@@ -24,8 +24,8 @@ cloudversionmatrix() {
 }
 
 it_returns_correct_cloudver_matrix() {
-    results=`cloudversionmatrix "develcloud3 GM3 develcloud4 GM4 develcloud5 GM5"`
-    test "$results" = " develcloud3=01101110 GM3=01101110 develcloud4=10101010 GM4=10101010 develcloud5=11001010 GM5=11001010"
+    results=`cloudversionmatrix "develcloud3 GM3 develcloud4 GM4 develcloud5 GM5 opensusecloud7"`
+    test "$results" = " develcloud3=01101110 GM3=01101110 develcloud4=10101010 GM4=10101010 develcloud5=11001010 GM5=11001010 opensusecloud7=11110001"
 }
 
 it_returns_correct_cloudver_matrix_milestone() {
