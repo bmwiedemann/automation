@@ -50,8 +50,13 @@ for my $num (@buildlist) {
     /\+ '\[' (\d+) = 0 '\]'\n\+ exit 1\nBuild step/ and $1 and $descr.="ret=$1";
     if(/The step '(\w+)' returned with exit code (\d+)/) {
         $descr.="/$2/$1";
-        if(m/Error: Committing the crowbar '\w+' proposal for '(\w+)' failed/) {$descr.="/$1"}
     }
+    if(m/Error: Committing the crowbar '\w+' proposal for '(\w+)' failed/) {$descr.="/$1"}
+    elsif($descr=~/proposal/) {
+        my @a=(m/deploy_single_proposal (\S+)/g);
+        $descr.="/$a[-1]" if @a;
+    }
+
     if(/Tests on controller: (\d+)/) {
         $descr.="/controller=$1";
         if($1 == 102) {
