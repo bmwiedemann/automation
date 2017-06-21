@@ -33,6 +33,7 @@ for my $num (@buildlist) {
         'Error: (crowbar self-test) failed',
         'Error: Waiting for \'(all nodes to be discovered)\' timed out.',
         'Error: Waiting for \'(admin node to start ssh) daemon\' timed out.',
+        'all (pool dirs are currently in use)',
         '\nError: Waiting for \'([^\n\']+)\' timed out.',
         '\nError: (.+) failed',
         '\nError: (.+) failure',
