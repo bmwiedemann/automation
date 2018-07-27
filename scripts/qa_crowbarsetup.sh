@@ -558,6 +558,7 @@ function rsync_iso
     mkdir -p /mnt/cloud "$targetdir"
     (
         cd "$targetdir"
+        [[ $cloudsource =~ GM[6-7] ]] && local susedownload=$reposerver
         url=http://$susedownload$distpath/
         wget --progress=dot:mega -r -np -nc -e robots=off -A "$distiso" $url \
         || complain 71 "iso not found"
