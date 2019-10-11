@@ -9,7 +9,7 @@ my $adminaddr=qq,bwiedemann+$shortcloudname\@suse.de,;
 $/=undef; my $userdata=decode_json(<>);
 foreach my $u (sort keys %$userdata) {
   foreach my $e (@{$userdata->{$u}}) { $e->{URI}="https://$cloudname/auth/switch/$e->{project}/?next=/project/instances/$e->{id}/"}
-  my $userdb=`openstack user show $u --format shell`;
+  my $userdb=`openstack --insecure user show --domain ldap_users $u --format shell`;
   $userdb=~m/^name="(.*)"$/m or next;
   my $username=$1;
   my $useremail="";
