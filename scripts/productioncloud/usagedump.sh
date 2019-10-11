@@ -1,8 +1,8 @@
 #!/bin/sh
-echo '\pset border 0 \\ \pset format unaligned \\ \pset fieldsep '\'\\t\'' \\ SELECT user_id,vm_state,instances.created_at,instances.updated_at,instance_type_id,uuid,project_id,display_name FROM instances WHERE instances.deleted_at is NULL ORDER BY user_id;' | \
-su - postgres -c 'psql -t -d nova' | \
+echo 'SELECT user_id,vm_state,instances.created_at,instances.updated_at,instance_type_id,uuid,project_id,display_name FROM instances WHERE instances.deleted_at is NULL and instances.updated_at < NOW() - INTERVAL 2 DAY ORDER BY user_id;' | \
+mysql nova  | \
 perl -we 'use strict; use JSON;
-    my $skip=3;
+    my $skip=1;
     my @values=qw"state created updated flavor id project name";
     my %user;
     while(<>) {
