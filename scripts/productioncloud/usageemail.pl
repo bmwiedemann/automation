@@ -34,6 +34,11 @@ foreach my $u (sort keys %$userdata) {
 this is an automated email from your cloud operator to inform you that
 you currently have the following instances on $cloudname.
 If they are not needed, please delete them.
+
+When using the cloud, do not forget that VMs may be lost to hardware failures.
+If you care about it, make external backups of your data,
+setup and configuration! A volume snapshot can already help.
+
 ###
 ", JSON->new->canonical(1)->pretty->encode($userdata->{$u});
   close(MAIL);
