@@ -13,7 +13,7 @@ foreach my $u (sort keys %$userdata) {
   $userdb=~m/^name="(.*)"$/m or next;
   my $username=$1;
   my $useremail="";
-  if($u =~ m/^\d{1,7}$/) { # LDAP ID
+  if($u =~ m/^[0-9a-f]{50,}$/) { # LDAP ID
     $useremail=`ldapsearch -h ldap.suse.de -b dc=suse,dc=de -x uid=$username | awk '/^mail:/{print \$2}'`;
     chop($useremail);
   } else {
